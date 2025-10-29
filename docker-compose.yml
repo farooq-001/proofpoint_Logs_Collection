@@ -1,0 +1,14 @@
+version: '3.9'
+
+services:
+  proofpoint-beat:
+    image: proofpoint-beat:p.v1
+    container_name: proofpoint-beat
+    network_mode: host
+    volumes:
+      - /opt/docker/proofpoint/logs:/opt/proofpoint/logs
+      - /opt/docker/proofpoint/credentials.conf:/opt/proofpoint/credentials.conf:ro
+    environment:
+      - PYTHONUNBUFFERED=1
+    user: root
+    restart: unless-stopped
